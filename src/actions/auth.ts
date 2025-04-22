@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { api } from 'config/api';
+import { api } from '@/config/api';
 import {
   LoginRequestData,
   AuthResponseData,
@@ -10,7 +10,7 @@ import {
   AuthMessageResponseData,
   VerifyEmailRequestData,
   ResendEmailVerifyRequestData,
-} from 'types';
+} from '@/types';
 
 export const getCsrfCookie = async (): Promise<void> => {
   return axios.get(`${import.meta.env.VITE_API_URL}/sanctum/csrf-cookie`, {

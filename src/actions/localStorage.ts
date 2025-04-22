@@ -1,4 +1,4 @@
-import { User } from "types";
+import { User } from "@/types";
 
 const USER_KEY = 'user';
 

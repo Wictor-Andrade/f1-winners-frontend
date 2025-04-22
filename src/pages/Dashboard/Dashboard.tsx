@@ -1,38 +1,24 @@
-import { useState } from 'react';
-import toast from 'react-hot-toast';
+"use client";
+import {AppSidebar, Topbar} from "@/components/relume/ApplicationShell10.tsx";
 
-import { useGlobalProvider } from 'hooks';
-import { resendEmailVerifyMail } from 'actions/auth';
-import { Alert } from 'components';
-
-export const Dashboard = () => {
-  const { user } = useGlobalProvider();
-  const [isResending, setIsResending] = useState(false);
-
-  const onResend = async () => {
-    try {
-      setIsResending(true);
-      const res = await resendEmailVerifyMail({ user_id: user?.id ?? '' });
-      toast.success(res.data.message);
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message || 'Something went wrong');
-    } finally {
-      setIsResending(false);
-    }
-  };
-
-  return (
-    <div className="dashboard">
-      {!user?.email_verified_at && (
-        <Alert 
-          text="Your email address is not verified. Click resend button to verify your email address."
-          buttonLabel="Resend"
-          buttonAction={onResend}
-          isButtonDisabled={isResending}
-          isButtonLoading={isResending}
-        />
-      )}
-      <h2>Hello {user?.first_name}, welcome back</h2>
-    </div>
-  );
+const Dashboard = () => {
+    return (
+        <AppSidebar>
+            <Topbar />
+            <div className="bg-background-secondary">
+                <div className="border-b-2 border-dashed border-[#d3d3d3] py-6 text-center text-black/50">
+                    <span>Click and paste Page Header</span>
+                </div>
+                <div className="container grid grid-cols-1 gap-12 px-6 py-8 md:grid-cols-[1fr_0.5fr] md:py-10 lg:px-8 lg:py-12">
+                <span className="flex h-screen items-center justify-center border-2 border-dashed border-[#d3d3d3] text-center text-black/50">
+                  Click and paste Main Content
+                </span>
+                    <span className="flex h-screen items-center justify-center border-2 border-dashed border-[#d3d3d3] text-center text-black/50">
+                  Click and paste Secondary Content
+                </span>
+                </div>
+            </div>
+    </AppSidebar>);
 };
+
+export default Dashboard;
